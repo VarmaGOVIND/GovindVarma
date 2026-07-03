@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -123,6 +124,7 @@ USE_TZ = True
 
 # Static files - Important for Render 
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  
 STATICFILES_DIRS = [
     BASE_DIR / 'core' / 'static',
@@ -135,3 +137,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Resend API Key
 RESEND_API_KEY = os.getenv('RESEND_API_KEY')
+
+# CSRF trusted origins (Render HTTPS)
+CSRF_TRUSTED_ORIGINS = [
+    'https://govindvarma.onrender.com',
+    'http://127.0.0.1:8000',
+]
+
+# Secure proxy SSL header 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
