@@ -3,7 +3,7 @@ from django.db import models
 
 class VisitorCount(models.Model):
     """Model to track visitor count"""
-    count = models.IntegerField(default=0)
+    count = models.IntegerField(default=0)  # 47 se 0 kar diya
     last_visit = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -15,13 +15,17 @@ class VisitorCount(models.Model):
 
     @classmethod
     def get_count(cls):
-        """Get or create visitor count and increment"""
+        """Get visitor count without incrementing"""
         visitor, created = cls.objects.get_or_create(pk=1)
-        if not created:
-            visitor.count += 1
-            visitor.save()
         return visitor.count
 
+    @classmethod
+    def increment(cls):
+        """Increment visitor count and return new count"""
+        visitor, created = cls.objects.get_or_create(pk=1)
+        visitor.count += 1
+        visitor.save()
+        return visitor.count
 
 class ContactSubmission(models.Model):
     """Model to store contact form submissions"""
