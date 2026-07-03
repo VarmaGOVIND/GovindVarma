@@ -831,6 +831,7 @@ body {
     width: 400px;
     height: 400px;
     z-index: 1;
+    pointer-events: none;
 }
 
 .menu-background-shapes .shape {

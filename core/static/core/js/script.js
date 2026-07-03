@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
 
-    // Check for saved theme preference or default to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
     htmlElement.setAttribute('data-theme', savedTheme);
 
@@ -18,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-
-            // Update cursor colors for light theme
             updateCursorForTheme(newTheme);
         });
     }
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize cursor colors based on current theme
     updateCursorForTheme(savedTheme);
 
     // ============================================
@@ -55,8 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     const cursorOrb = document.querySelector('.cursor-orb');
     const cursorCore = document.querySelector('.cursor-core');
-
-    // Create trail container
     const trailContainer = document.createElement('div');
     trailContainer.className = 'cursor-trail-container';
     document.body.appendChild(trailContainer);
@@ -71,75 +65,55 @@ document.addEventListener('DOMContentLoaded', () => {
         let coreX = mouseX;
         let coreY = mouseY;
 
-        // Trail history for smooth trail effect
         const trailHistory = [];
         const maxTrailLength = 20;
         const trailDots = [];
 
-        // Initialize trail dots
         for (let i = 0; i < maxTrailLength; i++) {
             const dot = document.createElement('div');
             dot.className = 'trail-dot';
             const size = 8 - (i * 0.3);
             dot.style.width = `${Math.max(2, size)}px`;
             dot.style.height = `${Math.max(2, size)}px`;
-            dot.style.background = `radial-gradient(circle, 
-                rgba(0, 255, 255, ${0.6 - (i * 0.03)}) 0%, 
-                rgba(0, 200, 200, ${0.4 - (i * 0.02)}) 50%,
-                transparent 100%)`;
+            dot.style.background = `radial-gradient(circle, rgba(0, 255, 255, ${0.6 - (i * 0.03)}) 0%, rgba(0, 200, 200, ${0.4 - (i * 0.02)}) 50%, transparent 100%)`;
             dot.style.boxShadow = `0 0 ${10 - i * 0.4}px rgba(0, 255, 255, ${0.5 - i * 0.025})`;
             trailContainer.appendChild(dot);
             trailDots.push(dot);
         }
 
-        // Track mouse
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
-
-            // Add to trail history
             trailHistory.unshift({ x: mouseX, y: mouseY });
             if (trailHistory.length > maxTrailLength) {
                 trailHistory.pop();
             }
         });
 
-        // Animation loop
         let lastTime = 0;
         function animate(currentTime) {
             const deltaTime = currentTime - lastTime;
             lastTime = currentTime;
 
-            // Smooth follow for orb (slower)
             orbX += (mouseX - orbX) * 0.08;
             orbY += (mouseY - orbY) * 0.08;
-
-            // Smoother follow for core (faster)
             coreX += (mouseX - coreX) * 0.15;
             coreY += (mouseY - coreY) * 0.15;
 
-            // Update positions
             cursorOrb.style.left = `${orbX}px`;
             cursorOrb.style.top = `${orbY}px`;
-
             cursorCore.style.left = `${coreX}px`;
             cursorCore.style.top = `${coreY}px`;
 
-            // Update trail dots with smooth interpolation
             trailDots.forEach((dot, index) => {
                 const historyIndex = Math.min(index, trailHistory.length - 1);
                 if (trailHistory[historyIndex]) {
                     const targetX = trailHistory[historyIndex].x;
                     const targetY = trailHistory[historyIndex].y;
-
-                    // Get current position or initialize
                     let currentX = parseFloat(dot.style.left) || targetX;
                     let currentY = parseFloat(dot.style.top) || targetY;
-
-                    // Smooth interpolation
                     currentX += (targetX - currentX) * 0.3;
                     currentY += (targetY - currentY) * 0.3;
-
                     dot.style.left = `${currentX}px`;
                     dot.style.top = `${currentY}px`;
                 }
@@ -149,11 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         requestAnimationFrame(animate);
 
-        // Hover effects
         const interactiveElements = document.querySelectorAll(
-            'a, button, .btn, .nav-link, .project-card, .skill-category, ' +
-            '.contact-method, .info-card, .tilt-card, input, textarea, select, ' +
-            '.hamburger-menu, .overlay-link, .btn-hire-me, .mobile-nav-link, .social-icon'
+            'a, button, .btn, .nav-link, .project-card, .skill-category, .contact-method, .info-card, .tilt-card, input, textarea, select, .hamburger-menu, .overlay-link, .btn-hire-me, .mobile-nav-link, .social-icon'
         );
 
         interactiveElements.forEach(el => {
@@ -161,19 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 cursorOrb.classList.add('hover');
                 cursorCore.classList.add('hover');
             });
-
             el.addEventListener('mouseleave', () => {
                 cursorOrb.classList.remove('hover');
                 cursorCore.classList.remove('hover');
             });
         });
 
-        // Click effects
         document.addEventListener('mousedown', () => {
             cursorOrb.classList.add('click');
             cursorCore.classList.add('click');
-
-            // Create burst effect
             createBurst(mouseX, mouseY);
         });
 
@@ -182,25 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cursorCore.classList.remove('click');
         });
 
-        // Burst effect on click
         function createBurst(x, y) {
             for (let i = 0; i < 8; i++) {
                 const burst = document.createElement('div');
                 const angle = (i / 8) * Math.PI * 2;
                 const velocity = 50 + Math.random() * 50;
 
-                burst.style.cssText = `
-                    position: fixed;
-                    left: ${x}px;
-                    top: ${y}px;
-                    width: 4px;
-                    height: 4px;
-                    background: #00ffff;
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 99997;
-                    box-shadow: 0 0 10px #00ffff;
-                `;
+                burst.style.cssText = `position: fixed; left: ${x}px; top: ${y}px; width: 4px; height: 4px; background: #00ffff; border-radius: 50%; pointer-events: none; z-index: 99997; box-shadow: 0 0 10px #00ffff;`;
                 document.body.appendChild(burst);
 
                 let posX = x;
@@ -229,21 +184,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Add glow effect on rapid movement
         let lastMouseX = mouseX;
         let lastMouseY = mouseY;
 
         setInterval(() => {
             const speed = Math.hypot(mouseX - lastMouseX, mouseY - lastMouseY);
-
             if (speed > 100) {
-                // Intensify glow briefly
                 cursorOrb.style.filter = 'blur(1px) brightness(1.3)';
                 setTimeout(() => {
                     cursorOrb.style.filter = 'blur(2px)';
                 }, 100);
             }
-
             lastMouseX = mouseX;
             lastMouseY = mouseY;
         }, 50);
@@ -264,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.toggle('active');
             mobileMenuOverlay.classList.toggle('active');
 
-            // Prevent body scroll when menu is open
             if (mobileMenuOverlay.classList.contains('active')) {
                 body.style.overflow = 'hidden';
             } else {
@@ -282,18 +232,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close menu when clicking on a link
+    // Close menu when clicking on a link - FIXED FOR MOBILE
     mobileNavLinks.forEach(function (link) {
-    // Handle both click and touch events for mobile
-    const closeMenu = function (e) {
-        hamburger.classList.remove('active');
-        mobileMenuOverlay.classList.remove('active');
-        body.style.overflow = '';
-    };
-    
-    link.addEventListener('click', closeMenu);
-    link.addEventListener('touchend', closeMenu);
-});
+        link.addEventListener('click', function (e) {
+            // Close the menu first
+            hamburger.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            body.style.overflow = '';
+            
+            // Then scroll to the section smoothly
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                e.preventDefault();
+                setTimeout(() => {
+                    const offset = 80;
+                    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 300); // Wait for menu to close
+            }
+        });
+    });
 
     // Close menu when clicking outside
     if (mobileMenuOverlay) {
@@ -398,7 +361,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('bgCanvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
-
         let width, height;
         let particles = [];
         let mousePos = { x: 0, y: 0 };
@@ -422,7 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             update() {
-                // Mouse interaction
                 const dx = mousePos.x - this.x;
                 const dy = mousePos.y - this.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
@@ -436,11 +397,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.x += this.vx;
                 this.y += this.vy;
 
-                // Boundary check
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
 
-                // Damping
                 this.vx *= 0.99;
                 this.vy *= 0.99;
             }
@@ -453,22 +412,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Create particles
         for (let i = 0; i < 50; i++) {
             particles.push(new Particle());
         }
 
-        // Track mouse for canvas
         document.addEventListener('mousemove', (e) => {
             mousePos.x = e.clientX;
             mousePos.y = e.clientY;
         });
 
-        // Animation loop
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
 
-            // Draw connections
             particles.forEach((p1, i) => {
                 p1.update();
                 p1.draw();
@@ -492,8 +447,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         animateCanvas();
     }
-
-
 
     // ============================================
     // TEXT SCRAMBLE EFFECT
@@ -561,7 +514,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Apply scramble to section titles on scroll
     const scrambleElements = document.querySelectorAll('.scramble-text');
     const scrambleObservers = [];
 
@@ -659,39 +611,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================
-    // SMOOTH SCROLL
+    // SMOOTH SCROLL (For non-mobile menu links only)
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    const smoothScroll = function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offset = 80;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+        // Skip mobile menu links - they have their own handler above
+        if (anchor.classList.contains('mobile-nav-link')) {
+            return;
         }
-    };
-    
-    anchor.addEventListener('click', smoothScroll);
-    anchor.addEventListener('touchend', smoothScroll);
-});
-
-    // ============================================
-    // CONTACT FORM
-    // ============================================
-    //const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            showToast('Message sent! I will get back to you soon.');
-            contactForm.reset();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offset = 80;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
-    }
+    });
 
     // ============================================
     // TOAST NOTIFICATION
@@ -770,7 +711,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const formData = new FormData(this);
-            const csrfToken = formData.get('csrfmiddlewaretoken');
 
             try {
                 const response = await fetch('/contact/', {
@@ -790,7 +730,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     showToast(data.message || 'Something went wrong. Please try again.');
                 }
             } catch (error) {
-                // Fallback to regular form submission if fetch fails
                 console.log('Fetch failed, submitting form normally');
                 this.submit();
             }
