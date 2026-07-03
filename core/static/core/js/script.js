@@ -284,12 +284,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close menu when clicking on a link
     mobileNavLinks.forEach(function (link) {
-        link.addEventListener('click', function () {
-            hamburger.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            body.style.overflow = '';
-        });
-    });
+    // Handle both click and touch events for mobile
+    const closeMenu = function (e) {
+        hamburger.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        body.style.overflow = '';
+    };
+    
+    link.addEventListener('click', closeMenu);
+    link.addEventListener('touchend', closeMenu);
+});
 
     // Close menu when clicking outside
     if (mobileMenuOverlay) {
@@ -658,20 +662,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // SMOOTH SCROLL
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offset = 80;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    const smoothScroll = function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const offset = 80;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
+    
+    anchor.addEventListener('click', smoothScroll);
+    anchor.addEventListener('touchend', smoothScroll);
+});
 
     // ============================================
     // CONTACT FORM
