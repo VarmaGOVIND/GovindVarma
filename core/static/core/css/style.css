@@ -30,6 +30,7 @@
     --radius-md: 16px;
     --radius-lg: 24px;
     --radius-xl: 32px;
+    --radius-full: 9999px;
 
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -759,6 +760,10 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] .mobile-menu-overlay {
+    background: rgba(255, 255, 255, 0.98);
 }
 
 .mobile-menu-overlay.active {
@@ -2589,6 +2594,56 @@ section {
     .mobile-nav-link {
         font-size: 1.5rem;
         padding: 0.8rem 1.5rem;
+    }
+}
+
+/* Mobile Improvements */
+@media (max-width: 768px) {
+    .hero {
+        padding: 100px 20px 40px;
+        gap: 40px;
+    }
+    
+    .hero-title {
+        font-size: clamp(32px, 8vw, 48px);
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .contact-form-panel {
+        padding: 25px;
+    }
+    
+    .form-group.floating input,
+    .form-group.floating textarea,
+    .form-group.floating select {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stats {
+        gap: 20px;
+    }
+    
+    .stat-num {
+        font-size: 28px;
+    }
+    
+    .about-cards {
+        grid-template-columns: 1fr;
     }
 }
 
