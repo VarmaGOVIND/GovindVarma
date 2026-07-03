@@ -489,29 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animateCanvas();
     }
 
-    // ============================================
-    // VISITOR COUNTER (Simulated)
-    // ============================================
-    const counterElement = document.getElementById('visitorCount');
-    if (counterElement) {
-        let count = 47;
 
-        // Animate counter
-        function animateCounter(target) {
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                counterElement.textContent = Math.floor(current).toLocaleString();
-            }, 30);
-        }
-
-        setTimeout(() => animateCounter(count), 1000);
-    }
 
     // ============================================
     // TEXT SCRAMBLE EFFECT

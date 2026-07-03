@@ -5,13 +5,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from .models import VisitorCount, ContactSubmission
 import json
+from django.db import models
 import resend
 
 
 def home(request):
     """Main view for the portfolio homepage"""
     # Get or increment visitor count
-    visitor_count = VisitorCount.get_count()
+    visitor_count = VisitorCount.increment()
     
     # Format the visitor count with commas
     formatted_count = f"{visitor_count:,}"
@@ -84,6 +85,9 @@ def home(request):
     return render(request, 'core/index.html', {
         'visitor_count': formatted_count
     })
+
+
+
 
 
 @require_http_methods(["POST"])

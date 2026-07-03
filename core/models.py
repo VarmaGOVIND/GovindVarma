@@ -3,7 +3,7 @@ from django.db import models
 
 class VisitorCount(models.Model):
     """Model to track visitor count"""
-    count = models.IntegerField(default=47)
+    count = models.IntegerField(default=0)
     last_visit = models.DateTimeField(auto_now=True)
 
     class Meta:
