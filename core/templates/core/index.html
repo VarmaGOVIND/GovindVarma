@@ -1,0 +1,733 @@
+<!-- index.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Govind Varma | Full Stack Python Developer</title>
+    <meta name="description"
+        content="Portfolio of Govind Varma - Full Stack Python Developer specializing in Django, Flask, and modern web technologies">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-orb"></div>
+    <div class="cursor-core"></div>
+
+    <!-- Interactive Background Canvas -->
+    <canvas id="bgCanvas" class="bg-canvas"></canvas>
+
+    <!-- Mouse Watcher Character -->
+    <div class="mascot-container" id="mascot">
+        <div class="mascot-body">
+            <div class="mascot-face">
+                <div class="eye left-eye">
+                    <div class="pupil"></div>
+                </div>
+                <div class="eye right-eye">
+                    <div class="pupil"></div>
+                </div>
+                <div class="mouth"></div>
+            </div>
+            <div class="mascot-hands">
+                <div class="hand left-hand"></div>
+                <div class="hand right-hand"></div>
+            </div>
+        </div>
+        <div class="mascot-shadow"></div>
+    </div>
+
+    <!-- Visitor Counter (Top Right) -->
+    <div class="visitor-counter">
+        <div class="counter-icon">👀</div>
+        <div class="counter-content">
+            <span class="counter-label">Visitors</span>
+            <span class="counter-number" id="visitorCount">{{ visitor_count }}</span>
+        </div>
+    </div>
+
+    <!-- ============ MODERN NAVBAR ============ -->
+    <nav class="navbar">
+        <!-- Left: Brand / Avatar -->
+        <div class="nav-brand">
+            <div class="nav-avatar">
+                <div class="avatar-placeholder">
+                    <span>GV</span>
+                </div>
+            </div>
+            <div class="nav-brand-text">
+                <span class="nav-name">Govind Varma</span>
+                <span class="nav-title">Python Developer</span>
+            </div>
+        </div>
+
+        <!-- Center: Floating Navigation Pill -->
+        <div class="nav-pill-container">
+            <ul class="nav-pill" id="navMenu">
+                <li><a href="#home" class="nav-pill-link">Home</a></li>
+                <li><a href="#about" class="nav-pill-link">About</a></li>
+                <li><a href="#skills" class="nav-pill-link">Skills</a></li>
+                <li><a href="#projects" class="nav-pill-link">Projects</a></li>
+                <li><a href="#contact" class="nav-pill-link">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Right: Theme Toggle & Hamburger -->
+        <div class="nav-right">
+            <!-- Theme Toggle Button -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span class="theme-icon sun">&#9728;</span>
+                <span class="theme-icon moon">&#9790;</span>
+            </button>
+
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle menu">
+                <div class="hamburger-box">
+                    <span class="hamburger-line line-1"></span>
+                    <span class="hamburger-line line-2"></span>
+                    <span class="hamburger-line line-3"></span>
+                </div>
+                <span class="hamburger-text">MENU</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Fullscreen Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+        <!-- Close Button -->
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+            <span>&times;</span>
+        </button>
+
+        <div class="mobile-menu-container">
+            <div class="mobile-menu-content">
+                <div class="menu-background-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+                <ul class="mobile-nav-links">
+                    <li><a href="#home" class="mobile-nav-link" data-delay="0">Home</a></li>
+                    <li><a href="#about" class="mobile-nav-link" data-delay="1">About</a></li>
+                    <li><a href="#skills" class="mobile-nav-link" data-delay="2">Skills</a></li>
+                    <li><a href="#projects" class="mobile-nav-link" data-delay="3">Projects</a></li>
+                    <li><a href="#contact" class="mobile-nav-link" data-delay="4">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-socials">
+                    <a href="" target="_blank" class="social-icon">GH</a>
+                    <a href="" target="_blank" class="social-icon">IN</a>
+                    <a href="#" class="social-icon"
+                        onclick="event.preventDefault(); showToast('Twitter coming soon!')">TW</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============ END NAVBAR ============ -->
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                Available for opportunities
+            </div>
+
+            <h1 class="hero-title">
+                <span class="title-line" data-text="Hey, I'm Govind">Hey, I'm Govind</span>
+                <span class="title-line gradient-text" data-text="Python Developer">Python Developer</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Building robust backends and clean frontends.
+                Passionate about creating scalable solutions that make a difference.
+            </p>
+
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary magnetic-btn">
+                    <span>View My Work</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-outline magnetic-btn">
+                    <span>Let's Talk</span>
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                {% comment %} <div class="stat">
+                    <span class="stat-num">0</span>
+                    <span class="stat-label">Years Exp</span>
+                </div> {% endcomment %}
+                <div class="stat">
+                    <span class="stat-num">5+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">∞</span>
+                    <span class="stat-label">Passion</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="code-window tilt-card">
+                <div class="window-header">
+                    <div class="window-dot red"></div>
+                    <div class="window-dot yellow"></div>
+                    <div class="window-dot green"></div>
+                    <span class="window-title">govind@portfolio:~</span>
+                </div>
+                <div class="window-body">
+                    <div class="code-line">
+                        <span class="prompt">$</span>
+                        <span class="command typing-text" data-text="python3 -c \" import govind\""></span>
+                    </div>
+                    <div class="code-line output">
+                        <span class="success">✓</span> Developer loaded successfully
+                    </div>
+                    <div class="code-line">
+                        <span class="prompt">$</span>
+                        <span class="command">govind.skills</span>
+                    </div>
+                    <div class="code-line output">
+                        ['Python', 'Django', 'Flask', 'JavaScript', 'SQL']
+                    </div>
+                    <div class="code-line">
+                        <span class="prompt">$</span>
+                        <span class="command blink">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// About Me</span>
+                <h2 class="section-title scramble-text" data-text="Who Am I?">Who Am I?</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image tilt-card">
+                    <div class="image-frame">
+                        <img src="{% static 'core/images/logo.jpg' %}" alt="Govind Varma" class="profile-img">
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="highlight-text">
+                            I'm Govind Varma, a fresh Full Stack Python Developer who believes
+                            <span class="text-wave">clean code</span> is poetry and
+                            <span class="text-wave">debugging</span> is detective work.
+                        </p>
+                        <p>
+                            While I may be new to the industry, I've spent countless hours building
+                            real-world projects that solve actual problems. From e-commerce platforms
+                            to task management systems, I've applied best practices and modern
+                            architectural patterns.
+                        </p>
+                        <p>
+                            I'm not just looking for a job—I'm looking for a team where I can contribute,
+                            learn, and grow together. Ready to bring fresh perspectives and relentless
+                            dedication to your next project.
+                        </p>
+                    </div>
+
+                    <div class="about-cards">
+                        <div class="info-card">
+                            <div class="card-icon">🎯</div>
+                            <h3>Goal Oriented</h3>
+                            <p>Every line of code has a purpose</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-icon">🚀</div>
+                            <h3>Fast Learner</h3>
+                            <p>Adapt quickly to new technologies</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-icon">🤝</div>
+                            <h3>Team Player</h3>
+                            <p>Collaboration drives innovation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Arsenal</span>
+                <h2 class="section-title scramble-text" data-text="My Toolkit">My Toolkit</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category" data-category="backend">
+                    <div class="category-header">
+                        <div class="category-icon">⚙️</div>
+                        <h3>Backend</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="85">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="80">
+                            <div class="skill-info">
+                                <span class="skill-name">Django</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="75">
+                            <div class="skill-info">
+                                <span class="skill-name">Flask</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="70">
+                            <div class="skill-info">
+                                <span class="skill-name">REST APIs</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-category="frontend">
+                    <div class="category-header">
+                        <div class="category-icon">🎨</div>
+                        <h3>Frontend</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="80">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML5</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="75">
+                            <div class="skill-info">
+                                <span class="skill-name">CSS3</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="70">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-category="tools">
+                    <div class="category-header">
+                        <div class="category-icon">🛠️</div>
+                        <h3>Tools & Others</h3>
+                    </div>
+                    <div class="skill-items">
+                        <div class="skill-item" data-level="85">
+                            <div class="skill-info">
+                                <span class="skill-name">Git & GitHub</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="70">
+                            <div class="skill-info">
+                                <span class="skill-name">PostgreSQL</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-level="65">
+                            <div class="skill-info">
+                                <span class="skill-name">Docker</span>
+                                <span class="skill-percent">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Portfolio</span>
+                <h2 class="section-title scramble-text" data-text="Featured Projects">Featured Projects</h2>
+                <p class="section-subtitle">Projects that demonstrate real-world skills employers want</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: E-Commerce -->
+                <article class="project-card featured tilt-card">
+                    <div class="project-image">
+                        <div class="project-visual bg-ecommerce">
+                            <div class="visual-content">
+                                <div class="mockup-browser">
+                                    <div class="browser-header">
+                                        <div class="browser-dots">
+                                            <span></span><span></span><span></span>
+                                        </div>
+                                        <div class="browser-url">shop.govind.dev</div>
+                                    </div>
+                                    <div class="browser-body">
+                                        <div class="product-grid">
+                                            <div class="product-item"></div>
+                                            <div class="product-item"></div>
+                                            <div class="product-item"></div>
+                                            <div class="product-item"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="overlay-links">
+                                <a href="#" class="overlay-link"
+                                    onclick="event.preventDefault(); showToast('Demo coming soon!')">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                    </svg>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="overlay-link"
+                                    onclick="event.preventDefault(); showToast('GitHub repo coming soon!')">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                    </svg>
+                                    Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header">
+                            <h3 class="project-title">Full-Stack E-Commerce Platform</h3>
+                            <span class="project-badge">Featured</span>
+                        </div>
+                        <p class="project-desc">
+                            A complete online store with user authentication, shopping cart,
+                            payment integration (Stripe), order management, and admin dashboard.
+                            Built with Django REST Framework backend and vanilla JS frontend.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">DRF</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                        <div class="project-features">
+                            <span class="feature">✓ JWT Authentication</span>
+                            <span class="feature">✓ Real-time Inventory</span>
+                            <span class="feature">✓ Payment Processing</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2: Task Management -->
+                <article class="project-card tilt-card">
+                    <div class="project-image">
+                        <div class="project-visual bg-task">
+                            <div class="task-board">
+                                <div class="task-column">
+                                    <div class="column-header">To Do</div>
+                                    <div class="task-item"></div>
+                                    <div class="task-item"></div>
+                                </div>
+                                <div class="task-column">
+                                    <div class="column-header">Doing</div>
+                                    <div class="task-item active"></div>
+                                </div>
+                                <div class="task-column">
+                                    <div class="column-header">Done</div>
+                                    <div class="task-item done"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="overlay-links">
+                                <a href="#" class="overlay-link"
+                                    onclick="event.preventDefault(); showToast('Demo coming soon!')">Live Demo</a>
+                                <a href="#" class="overlay-link"
+                                    onclick="event.preventDefault(); showToast('GitHub repo coming soon!')">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Task Management System</h3>
+                        <p class="project-desc">
+                            Trello-like project management tool with drag-and-drop interface,
+                            real-time updates using WebSockets, team collaboration features,
+                            and file attachments.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Socket.IO</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3: Blog Platform -->
+                <article class="project-card tilt-card">
+                    <div class="project-image">
+                        <div class="project-visual bg-blog">
+                            <div class="blog-preview">
+                                <div class="blog-header">
+                                    <div class="blog-title-line"></div>
+                                    <div class="blog-meta"></div>
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-text-line"></div>
+                                    <div class="blog-text-line"></div>
+                                    <div class="blog-text-line short"></div>
+                                </div>
+                                <div class="blog-tags">
+                                    <span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-overlay">
+                            <div class="overlay-links">
+                                <a href="#" class="overlay-link"
+                                    onclick="event.preventDefault(); showToast('Demo coming soon!')">Live Demo</a>
+                                <a href="#" class="overlay-link"
+                                    onclick="event.preventDefault(); showToast('GitHub repo coming soon!')">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Blog Platform with CMS</h3>
+                        <p class="project-desc">
+                            Medium-style blogging platform with markdown editor, SEO optimization,
+                            comment system, user following, and personalized feed algorithm.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">CKEditor</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                            <span class="tech-tag">AWS S3</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="projects-note">
+                <p>💡 <strong>Pro tip:</strong> These projects are designed to showcase skills that top tech companies
+                    look for.
+                    Building these will give you portfolio pieces that actually get you interviews!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// Let's Connect</span>
+                <h2 class="section-title scramble-text" data-text="Hire Me?">Hire Me?</h2>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info-panel">
+                    <div class="contact-intro">
+                        <h3 class="glitch-text" data-text="Ready to code something amazing?">Ready to code something
+                            amazing?</h3>
+                        <p>I'm currently looking for my first developer role. Whether you have a position open or just
+                            want to chat about tech, my inbox is always open!</p>
+                    </div>
+
+                    <div class="contact-methods">
+                        <a href="mailto:govind.varma@email.com" class="contact-method magnetic-btn">
+                            <div class="method-icon">📧</div>
+                            <div class="method-details">
+                                <span class="method-label">Email Me</span>
+                                <span class="method-value">govind.varma@email.com</span>
+                            </div>
+                            <div class="method-arrow">→</div>
+                        </a>
+
+                        <a href="https://github.com/govindvarma" target="_blank" class="contact-method magnetic-btn">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <span class="method-label">GitHub</span>
+                                <span class="method-value">@govindvarma</span>
+                            </div>
+                            <div class="method-arrow">→</div>
+                        </a>
+
+                        <a href="https://linkedin.com/in/govindvarma" target="_blank"
+                            class="contact-method magnetic-btn">
+                            <div class="method-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                </svg>
+                            </div>
+                            <div class="method-details">
+                                <span class="method-label">LinkedIn</span>
+                                <span class="method-value">/in/govindvarma</span>
+                            </div>
+                            <div class="method-arrow">→</div>
+                        </a>
+                    </div>
+
+                    <div class="availability-badge">
+                        <div class="badge-pulse"></div>
+                        <span>Currently available for full-time roles</span>
+                    </div>
+                </div>
+
+                <div class="contact-form-panel">
+                    <form class="contact-form" id="contactForm" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group floating">
+                            <input type="text" id="name" name="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                            <div class="form-line"></div>
+                        </div>
+
+                        <div class="form-group floating">
+                            <input type="email" id="email" name="email" required placeholder=" ">
+                            <label for="email">Your Email</label>
+                            <div class="form-line"></div>
+                        </div>
+
+                        <div class="form-group floating">
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Select Subject</option>
+                                <option value="job">Job Opportunity</option>
+                                <option value="project">Project Collaboration</option>
+                                <option value="mentorship">Mentorship</option>
+                                <option value="other">Just Saying Hi!</option>
+                            </select>
+                            <div class="form-line"></div>
+                        </div>
+
+                        <div class="form-group floating">
+                            <textarea id="message" name="message" rows="4" required placeholder=" "></textarea>
+                            <label for="message">Your Message</label>
+                            <div class="form-line"></div>
+                        </div>
+
+                        <div class="form-footer">
+                            <div class="form-hint">⚡ I typically reply within 12 hours</div>
+                            <button type="submit" class="btn btn-submit magnetic-btn">
+                                <span>Send Message</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="form-decoration">
+                        <div class="decoration-circle"></div>
+                        <div class="decoration-dots">
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>Built with 💻 and ☕ by Govind Varma</p>
+                    <p class="footer-small">Powered by Django</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-stats">
+                        <span>Last updated: <span id="lastUpdated">Just now</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">ℹ️</span>
+        <span class="toast-message" id="toastMessage">Message</span>
+    </div>
+
+    <script src="{% static 'core/js/script.js' %}"></script>
+</body>
+
+</html>
