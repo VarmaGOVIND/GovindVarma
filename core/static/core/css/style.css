@@ -433,6 +433,9 @@ body {
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-md);
 }
+[data-theme="light"] .visitor-counter {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 .counter-icon {
     font-size: 24px;
@@ -715,7 +718,7 @@ body {
         width: 100%;
         max-width: 100%;
         border-radius: 0;
-        padding: 12px 20px;
+        padding: 12px 15px;
     }
 
     .nav-pill-container {
@@ -728,6 +731,22 @@ body {
 
     .nav-right {
         margin-left: auto;
+    }
+    
+    /* Visitor counter ko mobile me adjust karo */
+    .visitor-counter {
+        top: 70px;
+        right: 10px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .counter-icon {
+        font-size: 18px;
+    }
+    
+    .counter-number {
+        font-size: 16px;
     }
 }
 
@@ -2586,11 +2605,11 @@ section {
     }
 
     .navbar {
-        padding: 1rem 5%;
+        padding: 12px 15px;
     }
 
     .nav-brand {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .hamburger-text {
@@ -2601,9 +2620,146 @@ section {
         font-size: 1.5rem;
         padding: 0.8rem 1.5rem;
     }
+    
+    /* Hero Section Mobile */
+    .hero {
+        padding: 100px 20px 40px;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-title {
+        font-size: clamp(28px, 8vw, 42px);
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+    
+    .hero-subtitle {
+        font-size: 14px;
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+    
+    .hero-badge {
+        font-size: 11px;
+        padding: 6px 12px;
+        margin-bottom: 20px;
+    }
+    
+    /* Buttons vertical stack */
+    .hero-cta {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 20px;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+    
+    /* Stats center align */
+    .hero-stats {
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+    }
+    
+    .stat-num {
+        font-size: 28px;
+    }
+    
+    .stat-label {
+        font-size: 11px;
+    }
+    
+    /* Code window mobile friendly */
+    .code-window {
+        margin: 0 10px;
+        font-size: 11px;
+    }
+    
+    .window-body {
+        padding: 15px;
+        font-size: 12px;
+    }
+    
+    .code-line {
+        font-size: 11px;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    /* Mascot hide on mobile */
+    .mascot-container {
+        display: none;
+    }
+    
+    /* Sections padding */
+    .container {
+        padding: 0 15px;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: clamp(24px, 6vw, 32px);
+        text-align: center;
+    }
+    
+    .section-subtitle {
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    /* About Section */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-image {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .about-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Skills Section */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .project-card.featured {
+        grid-column: span 1;
+    }
+    
+    /* Contact Section */
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .contact-form-panel {
+        padding: 20px;
+    }
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
     .navbar {
         padding: 1rem 5%;
     }
@@ -2620,7 +2776,7 @@ section {
         font-size: 1.5rem;
         padding: 0.8rem 1.5rem;
     }
-}
+} */
 
 /* Mobile Improvements */
 @media (max-width: 768px) {
@@ -2659,16 +2815,52 @@ section {
 }
 
 @media (max-width: 480px) {
+    .hero-title {
+        font-size: clamp(24px, 7vw, 36px);
+    }
+    
     .hero-stats {
         gap: 20px;
     }
     
     .stat-num {
-        font-size: 28px;
+        font-size: 24px;
+    }
+    
+    .stat-label {
+        font-size: 10px;
     }
     
     .about-cards {
         grid-template-columns: 1fr;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .visitor-counter {
+        top: 65px;
+        right: 5px;
+        padding: 5px 8px;
+        font-size: 10px;
+    }
+    
+    .counter-number {
+        font-size: 14px;
+    }
+    
+    .navbar {
+        padding: 10px 12px;
+    }
+    
+    .nav-name {
+        font-size: 13px;
+    }
+    
+    .nav-title {
+        font-size: 9px;
     }
 }
 
