@@ -162,7 +162,7 @@
                     <span class="stat-label">Years Exp</span>
                 </div> {% endcomment %}
                 <div class="stat">
-                    <span class="stat-num">3</span>
+                    <span class="stat-num">1</span>
                     <span class="stat-label">Projects</span>
                 </div>
                 <div class="stat">
@@ -385,7 +385,7 @@
                                 <div class="skill-progress"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-level="65">
+                        <!--<div class="skill-item" data-level="65">
                             <div class="skill-info">
                                 <span class="skill-name">Docker</span>
                                 <span class="skill-percent">65%</span>
@@ -393,7 +393,7 @@
                             <div class="skill-bar">
                                 <div class="skill-progress"></div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -402,179 +402,120 @@
 
     <!-- Projects Section -->
     <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">// Portfolio</span>
-                <h2 class="section-title scramble-text" data-text="Featured Projects">Featured Projects</h2>
-                <p class="section-subtitle">Projects that demonstrate real-world skills employers want</p>
-            </div>
-
-            <div class="projects-grid">
-                <!-- Project 1: E-Commerce -->
-                <article class="project-card featured tilt-card">
-                    <div class="project-image">
-                        <div class="project-visual bg-ecommerce">
-                            <div class="visual-content">
-                                <div class="mockup-browser">
-                                    <div class="browser-header">
-                                        <div class="browser-dots">
-                                            <span></span><span></span><span></span>
-                                        </div>
-                                        <div class="browser-url">shop.govind.dev</div>
-                                    </div>
-                                    <div class="browser-body">
-                                        <div class="product-grid">
-                                            <div class="product-item"></div>
-                                            <div class="product-item"></div>
-                                            <div class="product-item"></div>
-                                            <div class="product-item"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="overlay-links">
-                                <a href="#" class="overlay-link"
-                                    onclick="event.preventDefault(); showToast('Demo coming soon!')">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
-                                    </svg>
-                                    Live Demo
-                                </a>
-                                <a href="#" class="overlay-link"
-                                    onclick="event.preventDefault(); showToast('GitHub repo coming soon!')">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                                    </svg>
-                                    Source Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-header">
-                            <h3 class="project-title">Full-Stack E-Commerce Platform</h3>
-                            <span class="project-badge">Featured</span>
-                        </div>
-                        <p class="project-desc">
-                            A complete online store with user authentication, shopping cart,
-                            payment integration (Stripe), order management, and admin dashboard.
-                            Built with Django REST Framework backend and vanilla JS frontend.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Django</span>
-                            <span class="tech-tag">DRF</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                            <span class="tech-tag">Redis</span>
-                            <span class="tech-tag">Stripe API</span>
-                        </div>
-                        <div class="project-features">
-                            <span class="feature">✓ JWT Authentication</span>
-                            <span class="feature">✓ Real-time Inventory</span>
-                            <span class="feature">✓ Payment Processing</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 2: Task Management -->
-                <article class="project-card tilt-card">
-                    <div class="project-image">
-                        <div class="project-visual bg-task">
-                            <div class="task-board">
-                                <div class="task-column">
-                                    <div class="column-header">To Do</div>
-                                    <div class="task-item"></div>
-                                    <div class="task-item"></div>
-                                </div>
-                                <div class="task-column">
-                                    <div class="column-header">Doing</div>
-                                    <div class="task-item active"></div>
-                                </div>
-                                <div class="task-column">
-                                    <div class="column-header">Done</div>
-                                    <div class="task-item done"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="overlay-links">
-                                <a href="#" class="overlay-link"
-                                    onclick="event.preventDefault(); showToast('Demo coming soon!')">Live Demo</a>
-                                <a href="#" class="overlay-link"
-                                    onclick="event.preventDefault(); showToast('GitHub repo coming soon!')">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Task Management System</h3>
-                        <p class="project-desc">
-                            Trello-like project management tool with drag-and-drop interface,
-                            real-time updates using WebSockets, team collaboration features,
-                            and file attachments.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Socket.IO</span>
-                            <span class="tech-tag">SQLAlchemy</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 3: Blog Platform -->
-                <article class="project-card tilt-card">
-                    <div class="project-image">
-                        <div class="project-visual bg-blog">
-                            <div class="blog-preview">
-                                <div class="blog-header">
-                                    <div class="blog-title-line"></div>
-                                    <div class="blog-meta"></div>
-                                </div>
-                                <div class="blog-content">
-                                    <div class="blog-text-line"></div>
-                                    <div class="blog-text-line"></div>
-                                    <div class="blog-text-line short"></div>
-                                </div>
-                                <div class="blog-tags">
-                                    <span></span><span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="overlay-links">
-                                <a href="#" class="overlay-link"
-                                    onclick="event.preventDefault(); showToast('Demo coming soon!')">Live Demo</a>
-                                <a href="#" class="overlay-link"
-                                    onclick="event.preventDefault(); showToast('GitHub repo coming soon!')">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Blog Platform with CMS</h3>
-                        <p class="project-desc">
-                            Medium-style blogging platform with markdown editor, SEO optimization,
-                            comment system, user following, and personalized feed algorithm.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Django</span>
-                            <span class="tech-tag">CKEditor</span>
-                            <span class="tech-tag">Elasticsearch</span>
-                            <span class="tech-tag">AWS S3</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <div class="projects-note">
-                <p>🚀 <strong>Interested in collaboration?</strong> I'm always open to discussing new projects and opportunities!</p>
-            </div>
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">// Portfolio</span>
+            <h2 class="section-title scramble-text" data-text="Featured Projects">Featured Projects</h2>
+            <p class="section-subtitle"></p>
         </div>
-    </section>
+
+        <div class="projects-grid">
+            <!-- Project 1: E-Commerce -->
+            <article class="project-card featured tilt-card">
+                <div class="project-image">
+                    <img src="{% static 'core/images/TheSignal.png' %}" alt="E-Commerce Platform" class="project-screenshot">
+                    <div class="project-overlay">
+                        <div class="overlay-links">
+                            <a href="https://thesignal-2pdo.onrender.com/" class="overlay-link" >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                                </svg>
+                                Live
+                            </a>
+                            <a href="https://github.com/VarmaGOVIND/TheSignal" target="_blank" class="overlay-link">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                </svg>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3 class="project-title">The Signal - Modern News Platform</h3>
+                        <span class="project-badge">Featured</span>
+                    </div>
+                    <p class="project-desc">
+                        A full-stack news publishing platform with real-time breaking news ticker,
+                        multi-role authentication, markdown editor, and automated newsletter system.
+                        Built with Django backend and server-side rendered HTML/CSS templates.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Brevo API</span>
+                    </div>
+                    <div class="project-features">
+                        <span class="feature">✓ Real-time News Ticker</span>
+                        <span class="feature">✓ Role-Based Access Control (Admin, Author, User)</span>
+                        <span class="feature">✓ Threaded Comment System with Replies</span>
+                        <span class="feature">✓ Admin Dashboard with Analytics</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2: Task Management -->
+            <!--<article class="project-card tilt-card">
+                <div class="project-image">
+                    <img src="{% static 'core/images/taskmanager.png' %}" alt="" class="project-screenshot">
+                    <div class="project-overlay">
+                        <div class="overlay-links">
+                            <a href="#" class="overlay-link" onclick="event.preventDefault(); showToast('Demo coming soon!')">Live Demo</a>
+                            <a href="#" target="_blank" class="overlay-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title"></h3>
+                    <p class="project-desc">
+                        Trello-like project management tool with drag-and-drop interface,
+                        real-time updates using WebSockets, team collaboration features,
+                        and file attachments.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Flask</span>
+                        <span class="tech-tag">Socket.IO</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                </div>
+            </article>
+
+             Project 3: Blog Platform 
+            <article class="project-card tilt-card">
+                <div class="project-image">
+                    <img src="{% static 'core/images/blog.png' %}" alt="Blog Platform" class="project-screenshot">
+                    <div class="project-overlay">
+                        <div class="overlay-links">
+                            <a href="#" class="overlay-link" onclick="event.preventDefault(); showToast('Demo coming soon!')">Live Demo</a>
+                            <a href="https://github.com/VarmaGOVIND" target="_blank" class="overlay-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Blog Platform with CMS</h3>
+                    <p class="project-desc">
+                        Medium-style blogging platform with markdown editor, SEO optimization,
+                        comment system, user following, and personalized feed algorithm.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">CKEditor</span>
+                        <span class="tech-tag">Elasticsearch</span>
+                        <span class="tech-tag">AWS S3</span>
+                    </div>
+                </div>
+            </article>-->
+        </div>
+
+        <div class="projects-note">
+            <p>🚀 <strong>Interested in collaboration?</strong> I'm always open to discussing new projects and opportunities!</p>
+        </div>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
